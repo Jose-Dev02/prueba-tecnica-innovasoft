@@ -215,6 +215,7 @@ const ClientesCrear = () => {
                   label='Apellidos'
                   name='apellidos'
                   value={formData.apellidos}
+                  onInput={handleOnlyText}
                   inputProps={{ maxLength: 100 }}
                   onChange={handleChange}
                 />
