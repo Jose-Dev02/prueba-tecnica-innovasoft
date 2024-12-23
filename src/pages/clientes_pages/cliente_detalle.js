@@ -16,20 +16,12 @@ import {
   Divider,
   Snackbar,
   CircularProgress,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  useMediaQuery,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 
 import {
   backgroundStyle,
   paperBoxStyle,
   appBarStyles,
-  dialogStyles,
 } from "../../style/theme";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -54,7 +46,7 @@ import axios from "axios";
 
 const urlListado = `${config.apiUrl}${config.interesListadoUrl}`;
 
-const ClientesBorrar = () => {
+const ClientesDetalle = () => {
   dayjs.locale("es");
   dayjs.extend(customParseFormat);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -65,12 +57,10 @@ const ClientesBorrar = () => {
   const [errores, setErros] = useState(false);
   const [message, setMessage] = useState(null);
   const [open, setOpen] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
   const urlGetClientById = `${config.apiUrl}${config.cienteObtenerUrl}${id}`;
-  const urlBorrar = `${config.apiUrl}${config.clienteEliminarUrl}${id}`;
   axios.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
 
   const fetchClientData = async () => {
@@ -104,40 +94,11 @@ const ClientesBorrar = () => {
       setMessage(`${error.message}. Transaccion no realizada intente de nuevo`);
     }
   };
-  const handleClickOpen = () => {
-    setOpenDialog(true);
-  };
-
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-  };
   const handleCloseSnackbar = () => {
     setOpen(false);
   };
   const handleBackButton = () => {
     history.push(config.clientes.listado);
-  };
-
-  const handleDeleteButton = async () => {
-    setOpenDialog(false);
-    setMessage("");
-    try {
-      setLoading(true);
-      const response = await axios.delete(urlBorrar);
-      if (response) {
-        save_LS(
-          "message_to_show",
-          `Usuario ${formData.nombre} ${formData.apellidos} eliminado correctamente.`
-        );
-        setLoading(false);
-        history.push(config.clientes.listado);
-      }
-    } catch (error) {
-      setLoading(false);
-      setMessage(
-        `${error.message}. Transaccion no realizada.Intente de nuevo.`
-      );
-    }
   };
 
   const handleRefresh = () => {
@@ -208,16 +169,8 @@ const ClientesBorrar = () => {
                 sx={appBarStyles.avatar}
               />
               <Typography variant='h6' sx={appBarStyles.typography}>
-                Eliminar
+                Detalle
               </Typography>
-              <Button
-                variant='contained'
-                onClick={handleClickOpen}
-                color='error'
-                startIcon={<Delete />}
-                sx={appBarStyles.button}>
-                Eliminar
-              </Button>
               <Button
                 onClick={handleBackButton}
                 variant='contained'
@@ -368,33 +321,8 @@ const ClientesBorrar = () => {
           />
         )}
       </Box>
-      <Dialog
-        open={openDialog}
-        onClose={handleCloseDialog}
-        maxWidth='md'
-        fullWidth={true}
-        PaperProps={{ style: dialogStyles.dialog }}>
-        <DialogTitle sx={dialogStyles.dialogTitle}>{"ALERTA"}</DialogTitle>
-        <DialogContent sx={dialogStyles.dialogContent}>
-          <DialogContentText>¿Desea eliminar al cliente?</DialogContentText>
-        </DialogContent>
-        <DialogActions sx={dialogStyles.dialogActions}>
-          <Button
-            sx={dialogStyles.cancelButton}
-            autoFocus
-            onClick={handleCloseDialog}>
-            Cancelar
-          </Button>
-          <Button
-            sx={dialogStyles.acceptButton}
-            onClick={handleDeleteButton}
-            autoFocus>
-            Aceptar
-          </Button>
-        </DialogActions>
-      </Dialog>
     </>
   );
 };
 
-export default ClientesBorrar;
+export default ClientesDetalle;

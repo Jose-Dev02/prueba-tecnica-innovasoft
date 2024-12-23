@@ -19,6 +19,7 @@ const env = {
   HOME_ROUTE: "/home",
   CLIENTES_ROUTE_BASE: "/clientes",
   CLIENTES_ROUTE_CREAR: "/crear",
+  CLIENTES_ROUTE_DETALLE: "/detalle",
   CLIENTES_ROUTE_EDITAR: "/editar",
   CLIENTES_ROUTE_BORRAR: "/borrar",
   ERROR_ROUTE: "*",
@@ -48,6 +49,7 @@ const config = {
   clientes: {
     listado: env.CLIENTES_ROUTE_BASE,
     crear: `${env.CLIENTES_ROUTE_BASE}${env.CLIENTES_ROUTE_CREAR}`,
+    detalle: `${env.CLIENTES_ROUTE_BASE}${env.CLIENTES_ROUTE_DETALLE}`,
     editar: `${env.CLIENTES_ROUTE_BASE}${env.CLIENTES_ROUTE_EDITAR}`,
     borrar: `${env.CLIENTES_ROUTE_BASE}${env.CLIENTES_ROUTE_BORRAR}`,
   },

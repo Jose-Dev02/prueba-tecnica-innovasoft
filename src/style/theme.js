@@ -82,6 +82,11 @@ export const boxStyles = {
     fontWeight: "bold",
     backgroundColor: "#F5F5F5",
   },
+  tableRow: {
+    cursor: "pointer",
+    transition: "background-color 0.3s",
+    "&:hover": { backgroundColor: "#f5f5f5" },
+  },
   iconButtonSmall: {
     ":hover": { color: "inherit" },
     size: "small",

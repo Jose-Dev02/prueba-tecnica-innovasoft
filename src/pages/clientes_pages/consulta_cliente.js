@@ -114,6 +114,9 @@ const ClienteConsulta = () => {
   const handleDeleteButton = (id) => {
     history.push(`${config.clientes.borrar}/${id}`);
   };
+  const handleDetalle = (id) => {
+    history.push(`${config.clientes.detalle}/${id}`);
+  };
   useEffect(() => {
     if (user.userid) {
       setMessage(read_LS("message_to_show"));
@@ -222,20 +225,29 @@ const ClienteConsulta = () => {
                   </TableHead>
                   <TableBody>
                     {clientes.map((client) => (
-                      <TableRow key={client.id}>
+                      <TableRow
+                        sx={boxStyles.tableRow}
+                        key={client.id}
+                        onClick={() => handleDetalle(client.id)}>
                         <TableCell>{client.identificacion}</TableCell>
                         <TableCell>{client.nombre}</TableCell>
                         <TableCell>{client.apellidos}</TableCell>
                         <TableCell>
                           <IconButton
                             disableRipple
-                            onClick={() => handleEditButton(client.id)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleEditButton(client.id);
+                            }}
                             sx={boxStyles.iconButtonSmall}>
                             <Edit />
                           </IconButton>
                           <IconButton
                             disableRipple
-                            onClick={() => handleDeleteButton(client.id)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeleteButton(client.id);
+                            }}
                             sx={boxStyles.deleteButtonSmall}>
                             <Delete />
                           </IconButton>

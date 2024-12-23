@@ -161,7 +161,7 @@ const ClientesCrear = () => {
                   />
                 </IconButton>
                 <Typography variant='h6' sx={appBarStyles.typography}>
-                  Mantenimiento de clientes
+                  Crear
                 </Typography>
                 <Button
                   variant='contained'
@@ -192,6 +192,7 @@ const ClientesCrear = () => {
                   name='identificacion'
                   value={formData.identificacion}
                   onInput={handleOnlyNumber}
+                  inputProps={{ maxLength: 20 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -203,6 +204,7 @@ const ClientesCrear = () => {
                   label='Nombre'
                   name='nombre'
                   value={formData.nombre}
+                  inputProps={{ maxLength: 50 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -213,6 +215,7 @@ const ClientesCrear = () => {
                   label='Apellidos'
                   name='apellidos'
                   value={formData.apellidos}
+                  inputProps={{ maxLength: 100 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -267,6 +270,7 @@ const ClientesCrear = () => {
                   name='celular'
                   value={formData.celular}
                   onInput={handleOnlyNumber}
+                  inputProps={{ maxLength: 20 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -276,8 +280,9 @@ const ClientesCrear = () => {
                   required
                   label='Teléfono Otro'
                   name='otroTelefono'
-                  onInput={handleOnlyNumber}
                   value={formData.otroTelefono}
+                  onInput={handleOnlyNumber}
+                  inputProps={{ maxLength: 20 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -311,6 +316,7 @@ const ClientesCrear = () => {
                   required
                   label='Dirección'
                   name='direccion'
+                  inputProps={{ maxLength: 200 }}
                   value={formData.direccion}
                   onChange={handleChange}
                 />
@@ -323,6 +329,7 @@ const ClientesCrear = () => {
                   name='resennaPersonal'
                   multiline
                   value={formData.resennaPersonal}
+                  inputProps={{ maxLength: 200 }}
                   onChange={handleChange}
                 />
               </Grid>

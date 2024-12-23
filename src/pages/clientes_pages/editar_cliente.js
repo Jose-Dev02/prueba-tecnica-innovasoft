@@ -243,7 +243,7 @@ const ClientesEditar = () => {
                   />
                 </IconButton>
                 <Typography variant='h6' sx={appBarStyles.typography}>
-                  Mantenimiento de clientes
+                  Actualizar
                 </Typography>
                 <Button
                   variant='contained'
@@ -273,6 +273,7 @@ const ClientesEditar = () => {
                   name='identificacion'
                   value={formData.identificacion}
                   onInput={handleOnlyNumber}
+                  inputProps={{ maxLength: 20 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -280,10 +281,11 @@ const ClientesEditar = () => {
                 <TextField
                   fullWidth
                   required
-                  onInput={handleOnlyText}
                   label='Nombre'
                   name='nombre'
                   value={formData.nombre}
+                  onInput={handleOnlyText}
+                  inputProps={{ maxLength: 50 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -294,6 +296,8 @@ const ClientesEditar = () => {
                   label='Apellidos'
                   name='apellidos'
                   value={formData.apellidos}
+                  onInput={handleOnlyText}
+                  inputProps={{ maxLength: 100 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -348,6 +352,7 @@ const ClientesEditar = () => {
                   name='celular'
                   value={formData.telefonoCelular}
                   onInput={handleOnlyNumber}
+                  inputProps={{ maxLength: 20 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -357,8 +362,9 @@ const ClientesEditar = () => {
                   required
                   label='Teléfono Otro'
                   name='otroTelefono'
-                  onInput={handleOnlyNumber}
                   value={formData.otroTelefono}
+                  onInput={handleOnlyNumber}
+                  inputProps={{ maxLength: 20 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -393,6 +399,7 @@ const ClientesEditar = () => {
                   label='Dirección'
                   name='direccion'
                   value={formData.direccion}
+                  inputProps={{ maxLength: 200 }}
                   onChange={handleChange}
                 />
               </Grid>
@@ -402,6 +409,7 @@ const ClientesEditar = () => {
                   required
                   label='Reseña'
                   name='resennaPersonal'
+                  inputProps={{ maxLength: 200 }}
                   multiline
                   value={formData.resenaPersonal}
                   onChange={handleChange}

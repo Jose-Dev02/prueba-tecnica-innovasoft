@@ -13,6 +13,7 @@ import ClientesEditar from "../pages/clientes_pages/editar_cliente";
 import ClientesBorrar from "../pages/clientes_pages/delete_cliente";
 import ProtectedRoute from "../components/ProtectedRoute";
 import { AuthContext } from "../context/auth_context";
+import ClientesDetalle from "../pages/clientes_pages/cliente_detalle";
 const Routes = () => {
   const { user } = useContext(AuthContext);
   return (
@@ -35,6 +36,11 @@ const Routes = () => {
           exact
           path={config.clientes.crear}
           component={ClientesCrear}
+        />
+        <ProtectedRoute
+          exact
+          path={`${config.clientes.detalle}/:id`}
+          component={ClientesDetalle}
         />
         <ProtectedRoute
           exact
