@@ -25,7 +25,11 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import { backgroundStyle, paperBoxStyle } from "../../style/theme";
+import {
+  backgroundStyle,
+  paperBoxStyle,
+  appBarStyles,
+} from "../../style/theme";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Delete, Refresh } from "@mui/icons-material";
@@ -196,20 +200,21 @@ const ClientesBorrar = () => {
       <Box sx={backgroundStyle}>
         <Box sx={paperBoxStyle}>
           <AppBar position='static' color='transparent' elevation={0}>
-            <Toolbar>
+            <Toolbar sx={appBarStyles.toolbar}>
               <Avatar
                 alt='Remy Sharp'
                 src={previewUrl ? previewUrl : ""}
-                sx={{ color: "inherit", width: 60, height: 60, m: 2 }}
+                sx={appBarStyles.avatar}
               />
-              <Typography variant='h6' sx={{ flexGrow: 1, marginLeft: 1 }}>
+              <Typography variant='h6' sx={appBarStyles.typography}>
                 Mantenimiento de clientes
               </Typography>
               <Button
                 variant='contained'
                 onClick={handleClickOpen}
                 color='error'
-                startIcon={<Delete />}>
+                startIcon={<Delete />}
+                sx={appBarStyles.button}>
                 Eliminar
               </Button>
               <Button
@@ -217,7 +222,7 @@ const ClientesBorrar = () => {
                 variant='contained'
                 color='inherit'
                 startIcon={<ArrowBackIcon />}
-                sx={{ marginLeft: 1 }}>
+                sx={appBarStyles.backButton}>
                 Regresar
               </Button>
             </Toolbar>

@@ -11,6 +11,8 @@ import {
   IconButton,
 } from "@mui/material";
 
+import { loginBoxStyles } from "../../style/theme";
+
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -127,26 +129,17 @@ const Login = () => {
   });
 
   return (
-    <Box
-      sx={{
-        maxWidth: 400,
-        mx: "auto",
-        mt: 15,
-        p: 3,
-        border: "1px solid #ccc",
-        borderRadius: 2,
-      }}>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}>
-        <Typography variant='h4' mb={2}>
-          Iniciar Sesión
-        </Typography>
-      </Box>
+    <Box sx={loginBoxStyles.container}>
+      {" "}
+      <Box sx={loginBoxStyles.titleBox}>
+        {" "}
+        <Typography variant='h4' mb={2} textAlign='center'>
+          {" "}
+          Iniciar Sesión{" "}
+        </Typography>{" "}
+      </Box>{" "}
       <form onSubmit={handleSubmit}>
+        {" "}
         <TextField
           label='Usuario'
           fullWidth
@@ -157,14 +150,15 @@ const Login = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position='start'>
-                <AccountCircle />
+                {" "}
+                <AccountCircle />{" "}
               </InputAdornment>
             ),
           }}
           onChange={(e) =>
             setCredentials({ ...credentials, username: e.target.value })
           }
-        />
+        />{" "}
         <TextField
           label='Contraseña'
           type={visibility ? "" : "password"}
@@ -176,30 +170,27 @@ const Login = () => {
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
+                {" "}
                 <IconButton onClick={handleVisibility} edge='end'>
-                  {visibility ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                </IconButton>
+                  {" "}
+                  {visibility ? <VisibilityIcon /> : <VisibilityOffIcon />}{" "}
+                </IconButton>{" "}
               </InputAdornment>
             ),
           }}
           onChange={(e) =>
             setCredentials({ ...credentials, password: e.target.value })
           }
-        />
+        />{" "}
         <FormControlLabel
           control={
             <Checkbox color='info' onChange={handleCheck} checked={check} />
           }
           label='Recuérdame'
-        />
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "8px",
-            minHeight: "52.5px",
-          }}>
+          sx={loginBoxStyles.formControlLabel}
+        />{" "}
+        <Box sx={loginBoxStyles.submitBox}>
+          {" "}
           {cargando ? (
             <CircularProgress />
           ) : (
@@ -209,20 +200,19 @@ const Login = () => {
               variant='contained'
               fullWidth
               sx={{ mt: 2 }}>
-              Iniciar sesión
+              {" "}
+              Iniciar sesión{" "}
             </Button>
-          )}
-        </Box>
-        <Box
-          sx={{
-            marginTop: "5px",
-            marginBottom: "-5px",
-          }}>
+          )}{" "}
+        </Box>{" "}
+        <Box sx={loginBoxStyles.linkBox}>
+          {" "}
           <Link href={config.registro} underline='hover'>
-            {"¿No tienes cuenta? Registrarse"}
-          </Link>
-        </Box>
-      </form>
+            {" "}
+            {"¿No tienes cuenta? Registrarse"}{" "}
+          </Link>{" "}
+        </Box>{" "}
+      </form>{" "}
       {message && (
         <Snackbar
           open={open}
@@ -230,7 +220,7 @@ const Login = () => {
           onClose={handleCloseSnackbar}
           autoHideDuration={4000}
         />
-      )}
+      )}{" "}
     </Box>
   );
 };

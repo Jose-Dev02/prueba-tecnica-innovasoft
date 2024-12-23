@@ -19,7 +19,11 @@ import {
   Snackbar,
   CircularProgress,
 } from "@mui/material";
-import { backgroundStyle, paperBoxStyle } from "../../style/theme";
+import {
+  backgroundStyle,
+  paperBoxStyle,
+  appBarStyles,
+} from "../../style/theme";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SaveIcon from "@mui/icons-material/Save";
@@ -219,12 +223,12 @@ const ClientesEditar = () => {
         <Box sx={paperBoxStyle}>
           <form onSubmit={handleSubmit}>
             <AppBar position='static' color='transparent' elevation={0}>
-              <Toolbar>
+              <Toolbar sx={appBarStyles.toolbar}>
                 <IconButton disableRipple onClick={handleAvatarClick}>
                   <Avatar
                     alt='Remy Sharp'
                     src={previewUrl ? previewUrl : ""}
-                    sx={{ color: "inherit", width: 60, height: 60, m: 2 }}
+                    sx={appBarStyles.avatar}
                   />
                   <Input
                     sx={{ display: "none" }}
@@ -234,14 +238,15 @@ const ClientesEditar = () => {
                     onChange={handleImageChange}
                   />
                 </IconButton>
-                <Typography variant='h6' sx={{ flexGrow: 1, marginLeft: 1 }}>
+                <Typography variant='h6' sx={appBarStyles.typography}>
                   Mantenimiento de clientes
                 </Typography>
                 <Button
                   variant='contained'
                   type='submit'
                   color='inherit'
-                  startIcon={<SaveIcon />}>
+                  startIcon={<SaveIcon />}
+                  sx={appBarStyles.button}>
                   Guardar
                 </Button>
                 <Button
@@ -249,8 +254,7 @@ const ClientesEditar = () => {
                   variant='contained'
                   color='inherit'
                   startIcon={<ArrowBackIcon />}
-                  // onClick={handleRegresar}
-                  sx={{ marginLeft: 1 }}>
+                  sx={appBarStyles.backButton}>
                   Regresar
                 </Button>
               </Toolbar>

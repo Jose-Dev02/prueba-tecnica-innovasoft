@@ -9,6 +9,7 @@ import {
   IconButton,
   CircularProgress,
 } from "@mui/material";
+import { registerBoxStyles } from "../../style/theme";
 import axios from "axios";
 import config from "../../config";
 import { useHistory } from "react-router-dom";
@@ -90,26 +91,17 @@ const Registro = () => {
   };
 
   return (
-    <Box
-      sx={{
-        maxWidth: 400,
-        mx: "auto",
-        mt: 15,
-        p: 3,
-        border: "1px solid #ccc",
-        borderRadius: 2,
-      }}>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}>
-        <Typography variant='h4' mb={2}>
-          Registro
-        </Typography>
-      </Box>
+    <Box sx={registerBoxStyles.container}>
+      {" "}
+      <Box sx={registerBoxStyles.titleBox}>
+        {" "}
+        <Typography variant='h4' mb={2} textAlign='center'>
+          {" "}
+          Registro{" "}
+        </Typography>{" "}
+      </Box>{" "}
       <form onSubmit={handleSubmit}>
+        {" "}
         <TextField
           label='Usuario*'
           fullWidth
@@ -118,7 +110,8 @@ const Registro = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position='start'>
-                <AccountCircle />
+                {" "}
+                <AccountCircle />{" "}
               </InputAdornment>
             ),
           }}
@@ -127,7 +120,7 @@ const Registro = () => {
           }
           error={!!errors.username}
           helperText={errors.username}
-        />
+        />{" "}
         <TextField
           label='Correo Electrónico*'
           fullWidth
@@ -136,14 +129,15 @@ const Registro = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position='start'>
-                <Email />
+                {" "}
+                <Email />{" "}
               </InputAdornment>
             ),
           }}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           error={!!errors.email}
           helperText={errors.email}
-        />
+        />{" "}
         <TextField
           label='Contraseña*'
           type={visibility ? "" : "password"}
@@ -153,9 +147,11 @@ const Registro = () => {
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
+                {" "}
                 <IconButton onClick={handleVisibility}>
-                  {visibility ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                </IconButton>
+                  {" "}
+                  {visibility ? <VisibilityIcon /> : <VisibilityOffIcon />}{" "}
+                </IconButton>{" "}
               </InputAdornment>
             ),
           }}
@@ -164,15 +160,9 @@ const Registro = () => {
           }
           error={!!errors.password}
           helperText={errors.password}
-        />
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "8px",
-            minHeight: "52.5px",
-          }}>
+        />{" "}
+        <Box sx={registerBoxStyles.submitBox}>
+          {" "}
           {cargando ? (
             <CircularProgress />
           ) : (
@@ -182,18 +172,19 @@ const Registro = () => {
               variant='contained'
               fullWidth
               sx={{ mt: 2 }}>
-              Registrarse
+              {" "}
+              Registrarse{" "}
             </Button>
-          )}
-        </Box>
-      </form>
+          )}{" "}
+        </Box>{" "}
+      </form>{" "}
       <Snackbar
         open={!!message}
         onClose={() => setMessage("")}
         message={message}
         autoHideDuration={6000}
         severity={success ? "success" : "error"}
-      />
+      />{" "}
     </Box>
   );
 };

@@ -86,7 +86,7 @@ const Layout = () => {
               }}>
               {open ? <Close /> : <MenuIcon />}
             </IconButton>
-            <Typography variant='h5' style={{ flexGrow: 1 }}>
+            <Typography variant='h6' style={{ flexGrow: 1 }}>
               COMPANIA PRUEBA
             </Typography>
             <Typography variant='body1' sx={{ fontWeight: "bold" }}>
