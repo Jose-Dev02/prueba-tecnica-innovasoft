@@ -42,22 +42,8 @@ const useStyles = makeStyles((theme) => ({
 const Layout = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [image, setImage] = useState(null);
   const { user, logout } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
-
-  const fetchData = async () => {
-    const urlGetClientById = `${config.apiUrl}${config.cienteObtenerUrl}${user.userid}`;
-    axios.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
-    try {
-      const response = await axios.get(urlGetClientById);
-      if (response && response.data) {
-        setImage(response.data.imagen);
-      }
-    } catch (error) {
-      setImage("");
-    }
-  };
 
   const handleDrawer = () => setOpen(!open);
 
@@ -65,12 +51,6 @@ const Layout = () => {
     logout();
     history.push("/");
   };
-  useEffect(() => {
-    if (user.userid) {
-      fetchData();
-    }
-  }, [user]);
-
   return (
     <>
       <div className={classes.root}>
@@ -130,7 +110,7 @@ const Layout = () => {
               }}>
               <Avatar
                 alt='Remy Sharp'
-                src={image ? image : ""}
+                src=''
                 sx={{ width: 120, height: 120, mb: 2 }}
               />
               <Typography variant='body1' sx={{ fontWeight: "bold" }}>
