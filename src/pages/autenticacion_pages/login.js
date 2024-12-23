@@ -173,7 +173,7 @@ const Login = () => {
                 {" "}
                 <IconButton onClick={handleVisibility} edge='end'>
                   {" "}
-                  {visibility ? <VisibilityIcon /> : <VisibilityOffIcon />}{" "}
+                  {!visibility ? <VisibilityIcon /> : <VisibilityOffIcon />}{" "}
                 </IconButton>{" "}
               </InputAdornment>
             ),
