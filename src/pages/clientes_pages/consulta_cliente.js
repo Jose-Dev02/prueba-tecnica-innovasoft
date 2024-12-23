@@ -225,7 +225,7 @@ const ClienteConsulta = () => {
                       <TableRow key={client.id}>
                         <TableCell>{client.identificacion}</TableCell>
                         <TableCell>{client.nombre}</TableCell>
-                        <TableCell>{client.Apellidos}</TableCell>
+                        <TableCell>{client.apellidos}</TableCell>
                         <TableCell>
                           <IconButton
                             disableRipple
