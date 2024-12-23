@@ -68,7 +68,7 @@ const Registro = () => {
     try {
       setCargando(true);
       const url = `${config.apiUrl}${config.registroUrl}`;
-      console.log(formData);
+
       const response = await axios.post(url, formData);
       if (response.data.status === "Success") {
         setCargando(false);

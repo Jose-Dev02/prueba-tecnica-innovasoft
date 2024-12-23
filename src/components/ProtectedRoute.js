@@ -4,7 +4,6 @@ import { AuthContext } from "../context/auth_context";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   return (
     <Route

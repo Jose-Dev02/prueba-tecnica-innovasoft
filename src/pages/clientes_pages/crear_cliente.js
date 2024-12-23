@@ -88,7 +88,6 @@ const ClientesCrear = () => {
       const response = await axios.post(urlCrear, formToSend);
 
       if (response) {
-        console.log(response);
         save_LS("message_to_show", "Cliente Creado Satisfactoriamente");
 
         history.push(config.clientes.listado);
@@ -96,8 +95,6 @@ const ClientesCrear = () => {
     } catch (error) {
       setErros(`${error.message}.Transaccion no realizada. Intente de nuevo`);
     }
-
-    console.log(formToSend);
   };
 
   const handleImageChange = (e) => {

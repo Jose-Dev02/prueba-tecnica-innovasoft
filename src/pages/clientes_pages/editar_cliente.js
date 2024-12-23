@@ -67,7 +67,7 @@ const ClientesEditar = () => {
     try {
       setLoading(true);
       const response = await axios.get(urlGetClientById);
-      console.log(response);
+
       if (response && response.data) {
         const copydata = JSON.parse(JSON.stringify(response.data));
         copydata.fNacimiento = dayjs(copydata.fNacimiento);
@@ -126,7 +126,6 @@ const ClientesEditar = () => {
       const response = await axios.post(urlEditar, formToSend);
 
       if (response) {
-        console.log(response);
         save_LS("message_to_show", "Cliente Actualizado Satisfactoriamente");
         setLoading(false);
         history.push(config.clientes.listado);
@@ -134,8 +133,6 @@ const ClientesEditar = () => {
     } catch (error) {
       setMessage(`${error.message}.Transaccion no realizada. Intente de nuevo`);
     }
-
-    console.log(formToSend);
   };
 
   const handleImageChange = (e) => {
