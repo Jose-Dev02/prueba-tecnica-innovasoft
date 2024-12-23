@@ -4,12 +4,13 @@ import { AuthContext } from "../context/auth_context";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { user } = useContext(AuthContext);
+  console.log(user);
 
   return (
     <Route
       {...rest}
       render={(props) =>
-        user.userid ? <Component {...props} /> : <Redirect to='/' />
+        user && user.userid ? <Component {...props} /> : <Redirect to='/' />
       }
     />
   );

@@ -8,7 +8,7 @@ import {
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(read_object_LS("userData"));
 
   useEffect(() => {
     const storedUser = read_object_LS("userData");
@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => {
     save_object_LS("userData", userData);
     setUser(userData);
-    console.log(user);
   };
 
   const logout = () => {

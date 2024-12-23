@@ -35,7 +35,7 @@ const Login = () => {
     password: "",
   });
   const [error, setError] = useState({});
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState(read_LS("message_to_show"));
   const [cargando, setCargando] = useState(false);
   const [visibility, setVisibility] = useState(false);
 
@@ -117,7 +117,6 @@ const Login = () => {
     }
   };
   useEffect(() => {
-    setMessage(read_LS("message_to_show"));
     if (message) {
       setOpen(true);
       delete_LS("message_to_show");

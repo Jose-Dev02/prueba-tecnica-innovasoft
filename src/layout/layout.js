@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   AppBar,
@@ -19,6 +19,7 @@ import { Close, Logout } from "@mui/icons-material";
 import { makeStyles } from "@material-ui/core/styles";
 import { AuthContext } from "../context/auth_context";
 import config from "../config";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,9 +42,20 @@ const useStyles = makeStyles((theme) => ({
 const Layout = () => {
   const classes = useStyles();
   const history = useHistory();
+  const [image, setImage] = useState("");
   const { user, logout } = useContext(AuthContext);
-
   const [open, setOpen] = useState(false);
+
+  const fetchData = () => {
+    const urlGetClientById = `${config.apiUrl}${config.cienteObtenerUrl}${user.userid}`;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
+    try {
+      const response = axios.get(urlGetClientById);
+      if (response && response.data) {
+        setImage(response.data.imagen);
+      }
+    } catch (error) {}
+  };
 
   const handleDrawer = () => setOpen(!open);
 
@@ -51,6 +63,11 @@ const Layout = () => {
     logout();
     history.push("/");
   };
+  useEffect(() => {
+    if (user.userid) {
+      fetchData();
+    }
+  }, [user]);
 
   return (
     <>
@@ -111,6 +128,7 @@ const Layout = () => {
               }}>
               <Avatar
                 alt='Remy Sharp'
+                src={image ? image : ""}
                 sx={{ width: 120, height: 120, mb: 2 }}
               />
               <Typography variant='body1' sx={{ fontWeight: "bold" }}>
