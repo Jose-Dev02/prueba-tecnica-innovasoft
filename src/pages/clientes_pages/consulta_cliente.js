@@ -78,13 +78,13 @@ const ClienteConsulta = () => {
         setMessage("No hay datos resultantes");
       }
     } catch (error) {
-      if (error.respose && error.response.data.message) {
+      if (error.response && error.response.data.message) {
         setMessage(
           `${error.response.data.message}. Transaccion no realizada. Intenta de nuevo`
         );
       } else {
         setMessage(
-          `${error.code}. Transaccion no realizada. Intenta de nuevo.`
+          `${error.message}. Transaccion no realizada. Intenta de nuevo.`
         );
       }
       setLoading(false);

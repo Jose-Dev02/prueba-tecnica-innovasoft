@@ -42,19 +42,21 @@ const useStyles = makeStyles((theme) => ({
 const Layout = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const { user, logout } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
 
-  const fetchData = () => {
+  const fetchData = async () => {
     const urlGetClientById = `${config.apiUrl}${config.cienteObtenerUrl}${user.userid}`;
     axios.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
     try {
-      const response = axios.get(urlGetClientById);
+      const response = await axios.get(urlGetClientById);
       if (response && response.data) {
         setImage(response.data.imagen);
       }
-    } catch (error) {}
+    } catch (error) {
+      setImage("");
+    }
   };
 
   const handleDrawer = () => setOpen(!open);

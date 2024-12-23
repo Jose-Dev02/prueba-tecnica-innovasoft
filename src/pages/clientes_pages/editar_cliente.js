@@ -93,7 +93,11 @@ const ClientesEditar = () => {
       if (response.data.length > 0) {
         setIntereses(response.data);
       }
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+      setErros(true);
+      setMessage(`${error.message}. Transaccion no realizada intente de nuevo`);
+    }
   };
 
   const handleChange = (e) => {

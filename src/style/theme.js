@@ -157,3 +157,36 @@ export const registerBoxStyles = {
     minHeight: "52.5px",
   },
 };
+
+export const dialogStyles = {
+  dialog: {
+    maxWidth: "md",
+    width: "70%",
+    margin: "auto",
+  },
+  dialogTitle: {
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+  },
+  dialogContent: {
+    fontSize: "1rem",
+  },
+  dialogActions: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "8px 24px",
+  },
+  cancelButton: {
+    color: "inherit",
+    "&:hover": {
+      backgroundColor: "#e0e0e0",
+    },
+  },
+  acceptButton: {
+    color: "#f44336",
+    "&:hover": {
+      backgroundColor: "#d32f2f",
+      color: "white",
+    },
+  },
+};

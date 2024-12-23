@@ -29,6 +29,7 @@ import {
   backgroundStyle,
   paperBoxStyle,
   appBarStyles,
+  dialogStyles,
 } from "../../style/theme";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -67,9 +68,6 @@ const ClientesBorrar = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
   const { id } = useParams();
   const urlGetClientById = `${config.apiUrl}${config.cienteObtenerUrl}${id}`;
   const urlBorrar = `${config.apiUrl}${config.clienteEliminarUrl}${id}`;
@@ -85,7 +83,6 @@ const ClientesBorrar = () => {
         copydata.fAfiliacion = dayjs(copydata.fAfiliacion);
         setFormData(copydata);
         setPreviewUrl(copydata.imagen);
-
         setLoading(false);
       }
     } catch (error) {
@@ -101,7 +98,11 @@ const ClientesBorrar = () => {
       if (response.data.length > 0) {
         setIntereses(response.data);
       }
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+      setErros(true);
+      setMessage(`${error.message}. Transaccion no realizada intente de nuevo`);
+    }
   };
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -356,27 +357,6 @@ const ClientesBorrar = () => {
             </Grid>
             <Grid item xs={12} sm={1}></Grid>
           </Grid>
-          <Dialog
-            fullScreen={fullScreen}
-            open={openDialog}
-            onClose={handleCloseDialog}>
-            <DialogTitle>{"ALERTA"}</DialogTitle>
-            <DialogContent>
-              <DialogContentText>¿Desea eliminar al cliente?</DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button color='inherit' autoFocus onClick={handleCloseDialog}>
-                Cancelar
-              </Button>
-              <Button
-                color='error'
-                onClick={handleDeleteButton}
-                sx={{ "&:hover": { backgroundColor: "red", color: "white" } }}
-                autoFocus>
-                Aceptar
-              </Button>
-            </DialogActions>
-          </Dialog>
         </Box>
 
         {message && (
@@ -388,6 +368,31 @@ const ClientesBorrar = () => {
           />
         )}
       </Box>
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        maxWidth='md'
+        fullWidth={true}
+        PaperProps={{ style: dialogStyles.dialog }}>
+        <DialogTitle sx={dialogStyles.dialogTitle}>{"ALERTA"}</DialogTitle>
+        <DialogContent sx={dialogStyles.dialogContent}>
+          <DialogContentText>¿Desea eliminar al cliente?</DialogContentText>
+        </DialogContent>
+        <DialogActions sx={dialogStyles.dialogActions}>
+          <Button
+            sx={dialogStyles.cancelButton}
+            autoFocus
+            onClick={handleCloseDialog}>
+            Cancelar
+          </Button>
+          <Button
+            sx={dialogStyles.acceptButton}
+            onClick={handleDeleteButton}
+            autoFocus>
+            Aceptar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
