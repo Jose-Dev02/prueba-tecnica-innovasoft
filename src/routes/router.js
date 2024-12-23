@@ -18,8 +18,9 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path='/' component={Login} />
         <Route exact path={config.login}>
-          {user ? <Redirect to={config.home} /> : <Login />}
+          {user.userid ? <Redirect to={config.home} /> : <Login />}
         </Route>
         <Route exact path={config.registro} component={Registro} />
         <ProtectedRoute exact path={config.home} component={Home} />
