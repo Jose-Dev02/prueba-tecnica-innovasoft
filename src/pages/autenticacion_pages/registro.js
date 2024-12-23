@@ -150,7 +150,7 @@ const Registro = () => {
                 {" "}
                 <IconButton onClick={handleVisibility}>
                   {" "}
-                  {visibility ? <VisibilityIcon /> : <VisibilityOffIcon />}{" "}
+                  {!visibility ? <VisibilityIcon /> : <VisibilityOffIcon />}{" "}
                 </IconButton>{" "}
               </InputAdornment>
             ),
