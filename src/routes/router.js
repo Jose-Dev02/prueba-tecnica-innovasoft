@@ -18,7 +18,7 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
+        <Route exact path={config.login}>
           {user ? <Redirect to={config.home} /> : <Login />}
         </Route>
         <Route exact path={config.registro} component={Registro} />

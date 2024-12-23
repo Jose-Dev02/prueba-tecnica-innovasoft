@@ -14,7 +14,7 @@ const env = {
 
   // Rutas de mi app
 
-  LOGIN_ROUTE: "/",
+  LOGIN_ROUTE: "/login",
   REGISTRO_ROUTE: "/registro",
   HOME_ROUTE: "/home",
   CLIENTES_ROUTE_BASE: "/clientes",
